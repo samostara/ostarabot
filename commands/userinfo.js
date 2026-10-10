@@ -14,14 +14,6 @@ module.exports = {
     var member;
     var user;
     const target = interaction.options.getUser('target');
-
-    member = message.mentions.members.first();
-    if (!member) member = message.guild.members.get(args[0]);
-      else if (!member) member = message.guild.members.find(m => m.user.username === args.join(" "));
-        else if (!member) member = message.guild.members.find(m => m.displayName === args.join(" "));
-          else if (!member) member = message.guild.members.find(m => m.user.tag === args.join(" "));
-            else if (!member) member = message.member;
-    user = member.user;
     
     const embed = new Discord.RichEmbed()
       .setColor(target.displayColor)
