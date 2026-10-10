@@ -1,1 +1,1 @@
-More discord bot stuff.
+More discord bot stuff. This was created in 2019 and is currently being modernized.
