@@ -6,10 +6,15 @@ module.exports = {
     d: 'Gets the mentioned user\'s (or your) info.',
     u: '%userinfo or %userinfo <user>',
 	b: false,
-	async execute(client, message, args) {
+	data: new SlashCommandBuilder()
+		.setName('userinfo')
+		.setDescription('Gets user information.')
+		.addUserOption((option) => option.setName('target').setDescription('The member to ban').setRequired(true)),
+	async execute (interaction) {
     var member;
     var user;
-    
+    const target = interaction.options.getUser('target');
+
     member = message.mentions.members.first();
     if (!member) member = message.guild.members.get(args[0]);
       else if (!member) member = message.guild.members.find(m => m.user.username === args.join(" "));
@@ -19,18 +24,18 @@ module.exports = {
     user = member.user;
     
     const embed = new Discord.RichEmbed()
-    .setColor(member.displayColor)
-    .setTitle(`%userinfo`)
-  	.setThumbnail(user.avatarURL)
-  	.addField('User', `${user.tag} (${user.id})`)
-  	.addBlankField()
-  	.addField('Bot User', user.bot, true)
-    .addField('Presence', member.presence.status, true)
-    .addField('Account Created', new Date(user.createdTimestamp).toGMTString())
-    .addField('Server Joined', new Date(member.joinedTimestamp).toGMTString())
-    .addField(`Roles (${member.roles.size})`, member.roles.map(role => role.name).join(", "))
-  	.setTimestamp()
-  	.setFooter(`I'm ${client.user.tag}!`, client.user.avatarURL);
-    message.channel.send({embed});
+      .setColor(target.displayColor)
+      .setTitle(`%userinfo`)
+  	  .setThumbnail(target.avatarURL)
+  	  .addField('User', `${target.tag} (${target.id})`)
+  	  .addBlankField()
+  	  .addField('Bot User', target.bot, true)
+      .addField('Presence', target.presence.status, true)
+      .addField('Account Created', new Date(target.createdTimestamp).toGMTString())
+      .addField('Server Joined', new Date(target.joinedTimestamp).toGMTString())
+      .addField(`Roles (${target.roles.size})`, target.roles.map(role => role.name).join(", "))
+  	  .setTimestamp()
+  	  .setFooter(`I'm ${client.user.tag}!`, client.user.avatarURL);
+    await interaction.reply({embed});
 },
 };

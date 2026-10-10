@@ -9,8 +9,8 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('kick')
 		.setDescription('Kicks a member.')
-		.addUserOption((option) => option.setName('target').setDescription('The member to kicking').setRequired(true))
-		.addStringOption((option) => option.setName('reason').setDescription('The reason for kicking'))
+		.addUserOption((option) => option.setName('target').setDescription('The member to kick.').setRequired(true))
+		.addStringOption((option) => option.setName('reason').setDescription('The reason for kicking.'))
 		.setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
 		.setContexts(InteractionContextType.Guild),
 	async execute (interaction) {
