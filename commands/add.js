@@ -8,7 +8,7 @@ module.exports = {
 	b: false,
 	data: new SlashCommandBuilder()
 		.setName('add')
-		.setDescription('Forget your calculator at home? Have no fear!')
+		.setDescription('Adds two numbers.')
 		.addNumberOption((option) => option.setName('num1').setDescription('The first number to add.').setRequired(true))
 		.addNumberOption((option) => option.setName('num2').setDescription('The second number to add.').setRequired(true)),
 	async execute (interaction) {
