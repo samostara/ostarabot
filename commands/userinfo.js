@@ -29,5 +29,5 @@ module.exports = {
   	  .setTimestamp()
   	  .setFooter(`I'm ${client.user.tag}!`, client.user.avatarURL);
     await interaction.reply({embed});
-},
+  },
 };
